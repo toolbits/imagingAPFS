@@ -50,6 +50,14 @@ When we do this process in booted by macos USB installer, "asr restore"'s last p
 Because last process is inverting APFS container process, but, macos USB installer has no apfs_invert command.
 We need do this process in standard installed macos system or inject apfs_invert to macos USB installer's BaseSystem.dmg.
 
+Restored APFS container has no VM volume, however don't be afraid.
+It will be automatically created in next boot process.
+
+### hint to next research...
+
+It seems that overallocation problem (original container has) is fixed by inverting process.
+However, rebooted by restored container and use it, that problem will revive.
+
 
 
 ////////
