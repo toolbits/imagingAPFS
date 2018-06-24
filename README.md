@@ -2,23 +2,23 @@ How to create image and restore it under macos high sierra 10.13.5
 ===
 
 diskutil unmountDisk /dev/disk1  
-hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg  
-
-is same as:  
-hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg  
-hdiutil create -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg  
 hdiutil create -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg  
 
-asr imagescan --source /Volumes/Test\ HD/container.dmg  
-=> NG (internal error)  
+is same as:  
+hdiutil create -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg  
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg  
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg  
 
-asr restore --source /Volumes/Test\ HD/container.dmg --target /dev/disk2 --erase  
-=> NG (has no container disk)  
+// asr imagescan --source /Volumes/Test\ HD/container.dmg  
+// => NG (internal error)  
+
+// asr restore --source /Volumes/Test\ HD/container.dmg --target /dev/disk2 --erase  
+// => NG (has no container disk)  
 
 hdiutil attach /Volumes/Test\ HD/container.dmg  
 => attached as diskXX  
 asr restore --source /dev/diskXX --target /dev/disk2 --erase  
-=> OK (however, apfs_invert command required)  
+=> OK (however, apfs_invert command required, see below.)  
 
 ### explain...
 
