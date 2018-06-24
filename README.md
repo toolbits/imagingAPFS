@@ -37,7 +37,7 @@ It will be automatically created in next boot process.
 ### hint to next research...
 
 It seems that overallocation problem (original container has) is fixed by inverting process.  
-However, rebooted by restored container and use it, that problem will revive in the future.  
+However, rebooted by restored container and use it, that problem will strangely revive in the future.  
 
 
 
