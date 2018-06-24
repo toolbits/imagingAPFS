@@ -1,4 +1,4 @@
-How to create image and restore it under macos high sierra 10.13.5
+How to create a disk image and restore it under macos high sierra 10.13.5
 ===
 
 diskutil unmountDisk /dev/disk1  
