@@ -1,1 +1,68 @@
 
+////////
+//////// APFS disk image research...
+////////
+
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -size 100m -type UDIF /Volumes/Test\ HD/test.dmg
+
+hdiutil attach /Volumes/Test\ HD/test.dmg 
+/dev/disk26         	GUID_partition_scheme          	
+/dev/disk26s1       	Apple_APFS                     	
+/dev/disk27         	EF57347C-0000-11AA-AA11-0030654	
+/dev/disk27s1       	41504653-0000-11AA-AA11-0030654	/Volumes/untitled
+
+asr imagescan --source /Volumes/Test\ HD/test.dmg
+=> OK
+maybe restorable...
+
+
+
+////////
+//////// creating container image as device research...
+////////
+
+diskutil unmountDisk /dev/disk1
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg
+
+is same as:
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg
+hdiutil create -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg
+hdiutil create -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg
+
+asr imagescan --source /Volumes/Test\ HD/container.dmg
+=> NG (internal error)
+
+asr restore --source /Volumes/Test\ HD/container.dmg --target /dev/disk2 --erase
+=> NG (has no container disk)
+
+hdiutil attach /Volumes/Test\ HD/container.dmg
+=> attached as diskXX
+asr restore --source /dev/diskXX --target /dev/disk2 --erase
+=> OK (however, apfs_invert command required)
+
+
+
+////////
+//////// creating container image as folder research...
+////////
+
+hdiutil create -srcfolder /dev/disk0s2 -format UDZO /Volumes/Test\ HD/folder.dmg
+=> it makes HFS+ image
+
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcfolder /dev/disk0s2 -format UDZO /Volumes/Test\ HD/folder.dmg
+=> NG (no mountable file system)
+
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -srcfolder /dev/disk0s2 -format UDZO /Volumes/Test\ HD/folder.dmg
+=> OK
+
+is same as:
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -srcfolder /dev/disk1 -format UDZO /Volumes/Test\ HD/folder.dmg
+
+
+
+////////
+//////// creating volume image as folder research...
+////////
+
+hdiutil create -srcfolder /dev/disk1s2 -format UDZO /Volumes/Test\ HD/volume.dmg
+=> OK
