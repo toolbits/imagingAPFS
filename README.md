@@ -20,9 +20,9 @@ hdiutil attach /Volumes/Test\ HD/container.dmg
 asr restore --source /dev/diskXX --target /dev/disk2 --erase  
 => OK (however, apfs_invert command required, see below.)  
 
-the target disk is recommened by re-format by DiskUtility.
-first format as non APFS (For example, HFS+), then re-format as APFS.
-target container size must be larger than image container size.
+the target disk is recommened by re-format by DiskUtility.  
+first format as non APFS (For example, HFS+), then re-format as APFS.  
+target container size must be larger than image container size.  
 
 ### explain...
 
