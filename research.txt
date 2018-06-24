@@ -58,6 +58,11 @@ hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -srcfolder /de
 is same as:
 hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -srcfolder /dev/disk1 -format UDZO /Volumes/Test\ HD/folder.dmg
 
+########
+"container image as folder" contains no meeningfull information,
+because of hdiutil doesn't understand APFS container slice (like HFS+'s volume).
+We cannot use this scheme.
+
 
 
 ////////
@@ -66,3 +71,11 @@ hdiutil create -layout GPTSPUD -partitionType Apple_APFS -fs APFS -srcfolder /de
 
 hdiutil create -srcfolder /dev/disk1s2 -format UDZO /Volumes/Test\ HD/volume.dmg
 => OK
+
+maybe scannable...
+maybe restorable...
+
+########
+"volume image as folder" contains meeningfull one APFS volume.
+We can use this scheme to restore one volume at once.
+However, we cannot restore whole APFS container (including Preboot, Recovery, VM) at once.
