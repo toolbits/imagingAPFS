@@ -24,7 +24,7 @@ the target disk is recommened to re-format by DiskUtility.
 first, format as non APFS (for example, HFS+), then re-format as APFS.  
 target container size must be larger than image container size.  
 
-### explain...
+### explanation...
 
 "container image as device" contains meeningfull whole APFS container (including Preboot, Recovery, VM).  
 However, this type of image has no partition map information and volume title information.  
