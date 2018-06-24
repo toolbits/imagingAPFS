@@ -41,4 +41,4 @@ However, rebooted by restored container and use it, that problem will revive.
 
 
 
-This research was written by HORIGUCHI Junshi, 2018/06/24.
+(This research was written by HORIGUCHI Junshi, 2018/06/24.)
