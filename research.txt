@@ -87,7 +87,7 @@ We cannot use this scheme.
 //////// creating volume image as folder research...
 ////////
 
-hdiutil create -srcfolder /dev/disk1s2 -format UDZO /Volumes/Test\ HD/volume.dmg
+hdiutil create -srcfolder /Volume/Macintosh\ HD -format UDZO /Volumes/Test\ HD/volume.dmg
 => OK
 
 maybe scannable...
