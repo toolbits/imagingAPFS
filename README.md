@@ -35,6 +35,9 @@ When we do this process in booted by macos USB installer, last process of "asr r
 Because last process is inverting APFS container process, but, macos USB installer has no apfs_invert command.  
 We need do this process in standard installed macos system or inject apfs_invert to macos USB installer's BaseSystem.dmg.  
 
+/Volumes/Install\ macOS\ High\ Sierra/Install\ macOS\ High\ Sierra.app/Contents/SharedSupport/BaseSystem.dmg  
+/System/Library/Filesystems/apfs.fs/Contents/Resources/apfs_invert  
+
 Restored APFS container has no VM volume, however don't be afraid.  
 It will be automatically created in next boot process.  
 
