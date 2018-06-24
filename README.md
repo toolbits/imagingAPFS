@@ -27,7 +27,7 @@ However, this type of image has no partition map information and volume title in
 So, "asr imagescan" and "asr restore" goes to fail.  
 We have to mount image first by "hdiutil attach", then use "asr restore" command.  
 
-When we do this process in booted by macos USB installer, "asr restore"'s last process will be fail.  
+When we do this process in booted by macos USB installer, last process of "asr restore" will be fail.  
 Because last process is inverting APFS container process, but, macos USB installer has no apfs_invert command.  
 We need do this process in standard installed macos system or inject apfs_invert to macos USB installer's BaseSystem.dmg.  
 
@@ -38,3 +38,7 @@ It will be automatically created in next boot process.
 
 It seems that overallocation problem (original container has) is fixed by inverting process.  
 However, rebooted by restored container and use it, that problem will revive.  
+
+
+
+This research was written by HORIGUCHI Junshi, 2018/06/24.
