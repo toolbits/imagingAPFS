@@ -1,8 +1,8 @@
 How to create image and restore it under macos high sierra 10.13.5
 ===
 
-diskutil unmountDisk /dev/disk1
-hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg
+diskutil unmountDisk /dev/disk1  
+hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk1 -format UDZO /Volumes/Test\ HD/container.dmg  
 
 is same as:
 hdiutil create -layout GPTSPUD -partitionType Apple_APFS -srcdevice /dev/disk0s2 -format UDZO /Volumes/Test\ HD/container.dmg
@@ -20,7 +20,8 @@ hdiutil attach /Volumes/Test\ HD/container.dmg
 asr restore --source /dev/diskXX --target /dev/disk2 --erase
 => OK (however, apfs_invert command required)
 
-########
+### explain...
+
 "container image as device" contains meeningfull whole APFS container (including Preboot, Recovery, VM).
 However, this type of image has no partition map information and volume title information.
 So, "asr imagescan" and "asr restore" goes to fail.
