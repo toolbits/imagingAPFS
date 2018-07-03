@@ -41,7 +41,7 @@ We need do this process in standard installed macos system or inject apfs_invert
 Restored APFS container has no VM volume, however don't be afraid.  
 It will be automatically created in next boot process.  
 
-### hint to next research...
+### hint for next research...
 
 It seems that OVERALLOCATION PROBLEM (original container has) is repaired by inverting process.  
 However, rebooted by restored container and use it, that problem will strangely revive in the future.  
